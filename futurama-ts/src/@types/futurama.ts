@@ -1,3 +1,11 @@
+export interface FetchResultOK {
+  results: Character[];
+}
+
+export interface FetchResultNotOK {
+  error: string
+}
+
 export interface Character {
     name:        Name;
     images:      Images;
