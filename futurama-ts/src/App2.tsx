@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Character, FetchResultNotOK, FetchResultOK } from './@types/futurama';
-// import CharacterCard from './CharacterCard';
+import CharacterCard from './CharacterCard';
 
 
 
@@ -13,7 +13,7 @@ function App2() {
             if (response.ok) {
                 const result = await response.json() as FetchResultOK;
                 console.log(result);
-                setCharacters(result.results);
+                setCharacters(result);
             } else {
                 const result = await response.json() as FetchResultNotOK;
                 console.log(result);
@@ -25,15 +25,15 @@ function App2() {
     }
     useEffect(() => {
         fetchData().catch((e) => console.log(e))
-    })
-
+    }, []) 
+console.log(characters)
   return (
       <div>
-        {/* <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
         { characters.map((character) => {
           return <CharacterCard key={character.id} character={character} message={"Hello World!"}/>
         }) }
-        </div> */}
+        </div>
           
 
     </div>

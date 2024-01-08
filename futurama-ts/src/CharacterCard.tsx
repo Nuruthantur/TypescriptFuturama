@@ -16,8 +16,8 @@ function CharacterCard({ character, message }: Props) {
   }
   return (
     <div style={divStyle}>
-      <p>{character.name}</p>
-      <img src={character.images} style={{ width: "150px", height: "150px" }}/>
+      <p>{character.name.first} {character.name.last }</p>
+      <img src={character.images.main} style={{ width: "150px", height: "150px" }}/>
       <p>{message?.toLocaleLowerCase()}</p>
     </div>
   )
