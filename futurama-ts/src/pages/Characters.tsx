@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Character, FetchResultNotOK, FetchResultOK } from "../@types/futurama";
 import CharacterCard from "../components/CharacterCard";
-import NavBar from "../components/NavBar";
+// import NavBar from "../components/NavBar";
 
 export default function Characters() {
   const [characters, setCharacters] = useState<Character[]>([]);

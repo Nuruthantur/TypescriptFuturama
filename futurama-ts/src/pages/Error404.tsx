@@ -9,7 +9,7 @@ export default function Error404() {
       }}
     >
       <h1>There doesn't seem to be anything here </h1>
-      <h2>*cricket noises*</h2>
+      <h2>*cricket noise*</h2>
     </div>
   );
 }

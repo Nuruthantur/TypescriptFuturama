@@ -1,8 +1,13 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { CSSProperties } from "react";
 
 function About() {
   const location = useLocation();
-
+  const tabstyleActive: CSSProperties = {
+    borderTop: "solid 1px black",
+    borderRight: "solid 1px black",
+    borderLeft: "solid 1px black",
+  };
   if (location.pathname !== "/about") return <Outlet />;
   return (
     <div>
@@ -17,7 +22,6 @@ function About() {
         <Link to={"me"}>About Me</Link>
         <Link to={"futurama"}>About Futurama</Link>
       </div>
-      {/* <Outlet /> */}
     </div>
   );
 }

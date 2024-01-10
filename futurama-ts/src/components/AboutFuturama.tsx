@@ -14,3 +14,5 @@ const AboutFuturama = () => {
 };
 
 export default AboutFuturama;
+
+// https://api.sampleapis.com/futurama/info
