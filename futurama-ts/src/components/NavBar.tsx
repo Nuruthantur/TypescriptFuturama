@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function NavBar() {
   const navContainerStyles = {
@@ -10,16 +12,27 @@ function NavBar() {
     padding: "0 1em",
   };
 
-  const location = useLocation();
+  // const location = useLocation();
 
   const navigation = useNavigate();
+
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <nav style={navContainerStyles}>
       <NavLink to={"/"}>Homepage</NavLink>
+
       <NavLink to={"/characters"}>Characters</NavLink>
       {/* // end removes active style from  children */}
+
       <NavLink to={"/about"}>About</NavLink>
+
+      {!user ? (
+        <NavLink to={"/auth"}>Login</NavLink>
+      ) : (
+        <button onClick={logout}>Logout</button>
+      )}
+
       <button onClick={() => navigation(-1)}>Back</button>
     </nav>
   );
