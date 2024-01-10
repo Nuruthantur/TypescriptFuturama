@@ -4,9 +4,9 @@ import { AuthContext } from "../context/AuthContext";
 
 const AuthPage = () => {
   const { login } = useContext(AuthContext);
-  //   const signupPlaceholder = () => {
-  //     console.log({ message: "would sign up now" });
-  //   };
+  const signupPlaceholder = () => {
+    console.log({ message: "would sign up now" });
+  };
   return (
     <div
       style={{
@@ -19,10 +19,10 @@ const AuthPage = () => {
         <h1>Login</h1>
         <AuthForm submitTitle="login" submit={login} />
       </div>
-      {/* <div>
+      <div>
         <h1>Sign up</h1>
         <AuthForm submitTitle="signup" submit={signupPlaceholder} />
-      </div> */}
+      </div>
     </div>
   );
 };
