@@ -1,12 +1,7 @@
-// export type FetchResultOK = Character[]
-// export interface FetchResultOK {
-//   results: Character[];
-// }
 export type FetchResultOK = Character[]
 export interface FetchResultNotOK {
   error: string
 }
-
 export interface Character {
     name:        Name;
     images:      Images;

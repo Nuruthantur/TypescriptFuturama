@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Character } from "../@types/futurama";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 type Props = {
   character: Character;
   message?: string;
 };
 
-function CharacterCard({ character, message }: Props) {
-  // function CharacterCard ({ character }:{ character: Character }) {
+function CharacterCard({ character }: Props) {
+  //message
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const divStyle: React.CSSProperties = {
     border: "black 1px solid",
     padding: "1em",
@@ -18,15 +22,23 @@ function CharacterCard({ character, message }: Props) {
   };
   return (
     <div style={divStyle}>
-      <p>
+      <h3>
         {character.name.first} {character.name.last}
-      </p>
-      <img
-        src={character.images.main}
-        style={{ width: "150px", height: "150px" }}
-      />
-      <p style={{ wordBreak: "break-all" }}>{character.sayings[0]}</p>
-      {/* <p>{message?.toLocaleLowerCase()}</p> */}
+      </h3>
+      {/* <p style={{ wordBreak: "break-all" }}>{character.sayings[0]}</p> */}
+      <div>
+        {/* <button>More Info</button> */}
+        {/* <p>{message?.toLocaleLowerCase()}</p> */}
+        <img
+          src={character.images.main}
+          style={{ width: "150px", height: "150px" }}
+        />
+        {user && (
+          <button onClick={() => navigate(`${character.id}`)}>
+            Learn more about {character.name.first}
+          </button>
+        )}
+      </div>
     </div>
   );
 }

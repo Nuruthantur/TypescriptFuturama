@@ -21,10 +21,8 @@ function NavBar() {
   return (
     <nav style={navContainerStyles}>
       <NavLink to={"/"}>Homepage</NavLink>
-
       <NavLink to={"/characters"}>Characters</NavLink>
       {/* // end removes active style from  children */}
-
       <NavLink to={"/about"}>About</NavLink>
       <NavLink to={"/game"}>Game</NavLink>
       {!user ? (
@@ -34,6 +32,7 @@ function NavBar() {
       )}
 
       <button onClick={() => navigation(-1)}>Back</button>
+      {user && <p>{user.email}</p>}
     </nav>
   );
 }

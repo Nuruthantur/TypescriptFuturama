@@ -12,6 +12,8 @@ import AboutFuturama from "./components/AboutFuturama.tsx";
 import AuthPage from "./pages/AuthPage.tsx";
 import { AuthContextProvider } from "./context/AuthContext.tsx";
 import Game from "./pages/Game.tsx";
+import CharacterDetails from "./pages/CharacterDetails.tsx";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,16 @@ const router = createBrowserRouter([
       {
         path: "/characters",
         element: <Characters />,
+        children: [
+          {
+            path: ":id",
+            element: (
+              <ProtectedRoute>
+                <CharacterDetails />
+              </ProtectedRoute>
+            ),
+          },
+        ],
       },
       // {
       //   path: "/episodes",
