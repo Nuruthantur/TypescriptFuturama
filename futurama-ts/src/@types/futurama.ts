@@ -1,4 +1,7 @@
-export type FetchResultOK = Character[]
+// export type FetchResultOK = Character[]
+export interface FetchResultOK {
+  results: Character[];
+}
 
 export interface FetchResultNotOK {
   error: string

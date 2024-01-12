@@ -25,7 +25,7 @@ function CharacterCard({ character, message }: Props) {
         src={character.images.main}
         style={{ width: "150px", height: "150px" }}
       />
-      <p>{character.sayings[0]}</p>
+      <p style={{ wordBreak: "break-all" }}>{character.sayings[0]}</p>
       {/* <p>{message?.toLocaleLowerCase()}</p> */}
     </div>
   );

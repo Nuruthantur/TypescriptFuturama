@@ -11,6 +11,7 @@ import AboutMe from "./components/AboutMe.tsx";
 import AboutFuturama from "./components/AboutFuturama.tsx";
 import AuthPage from "./pages/AuthPage.tsx";
 import { AuthContextProvider } from "./context/AuthContext.tsx";
+import Game from "./pages/Game.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Homepage />,
       },
+      { path: "/game", element: <Game /> },
       {
         path: "/characters",
         element: <Characters />,

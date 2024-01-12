@@ -26,7 +26,7 @@ function NavBar() {
       {/* // end removes active style from  children */}
 
       <NavLink to={"/about"}>About</NavLink>
-
+      <NavLink to={"/game"}>Game</NavLink>
       {!user ? (
         <NavLink to={"/auth"}>Login</NavLink>
       ) : (
