@@ -74,7 +74,14 @@ export default function Characters() {
   if (location.pathname !== "/characters") return <Outlet />;
   return (
     <div>
-      <div>
+      <div
+        style={{
+          margin: "1em 0",
+          padding: "0 1em",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <input onChange={handleInputChange} />
       </div>
       <div
