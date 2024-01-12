@@ -38,6 +38,6 @@ function useFetch<T>(url: string): Return<T>{
         }
         fetchData().catch((e) => console.log(e));
     }, [url])
-    return {data,error,loading}
+    return {data, error, loading}
 }
 export default useFetch

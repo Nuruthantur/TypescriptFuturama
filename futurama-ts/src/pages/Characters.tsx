@@ -51,8 +51,11 @@ export default function Characters() {
   const { data, error, loading } = useFetch<FetchResultOK>(url);
 
   const filtered = data
-    ? data.results.filter((c) =>
-        c.name.first.toLowerCase().includes(filterValue.toLowerCase())
+    ? data.filter(
+        (c) =>
+          c.name.first.toLowerCase().includes(filterValue.toLowerCase()) ||
+          c.name.middle.toLowerCase().includes(filterValue.toLowerCase()) ||
+          c.name.last.toLowerCase().includes(filterValue.toLowerCase())
       )
     : [];
 
