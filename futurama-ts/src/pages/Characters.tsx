@@ -46,7 +46,7 @@ import useFetch from "../hooks/useFetch";
 
 export default function Characters() {
   const location = useLocation();
-  const [filterValue] = useState("");
+  const [filterValue, setFilterValue] = useState("");
   const url = "https://api.sampleapis.com/futurama/characters";
   const { data, error, loading } = useFetch<FetchResultOK>(url);
 
@@ -56,6 +56,9 @@ export default function Characters() {
       )
     : [];
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterValue(e.target.value);
+  };
   if (error)
     return (
       <div>
@@ -71,6 +74,9 @@ export default function Characters() {
   if (location.pathname !== "/characters") return <Outlet />;
   return (
     <div>
+      <div>
+        <input onChange={handleInputChange} />
+      </div>
       <div
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
       >
