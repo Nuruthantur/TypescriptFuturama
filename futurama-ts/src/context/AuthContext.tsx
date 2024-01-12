@@ -28,7 +28,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
 
-  const testUser = { email: "oliver@email.com" };
+  const testUser = { email: "ol@email.com" };
 
   const login = (email: string) => {
     if (email === testUser.email) {

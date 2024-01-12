@@ -35,7 +35,7 @@ function CharacterCard({ character }: Props) {
         />
         {user && (
           <button onClick={() => navigate(`${character.id}`)}>
-            Learn more about {character.name.first}
+            Learn more about {character.name.first} {character.name.last}
           </button>
         )}
       </div>
