@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import Counter from "../components/Counter";
-import { AuthContext } from "../context/AuthContext";
 
 const Homepage = () => {
   // const context = useContext(AuthContext);

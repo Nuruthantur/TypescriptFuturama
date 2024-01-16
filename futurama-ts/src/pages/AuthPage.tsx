@@ -3,10 +3,7 @@ import AuthForm from "../components/AuthForm";
 import { AuthContext } from "../context/AuthContext";
 
 const AuthPage = () => {
-  const { login } = useContext(AuthContext);
-  const signupPlaceholder = () => {
-    console.log({ message: "would sign up now" });
-  };
+  const { login, signup } = useContext(AuthContext);
   return (
     <div
       style={{
@@ -21,7 +18,7 @@ const AuthPage = () => {
       </div>
       <div>
         <h1>Sign up</h1>
-        <AuthForm submitTitle="signup" submit={signupPlaceholder} />
+        <AuthForm submitTitle="signup" submit={signup} />
       </div>
     </div>
   );
