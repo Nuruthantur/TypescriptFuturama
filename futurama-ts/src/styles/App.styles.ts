@@ -6,14 +6,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-size: cover;
+    background-color: pink;
     margin: 0;
     padding: 0 20px;
     display: flex;
     justify-content: center;
   }
 
-  * {
     font-family: 'Catamaran', sans-serif;
     box-sizing: border-box;
   }

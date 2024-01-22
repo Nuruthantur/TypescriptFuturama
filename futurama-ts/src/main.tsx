@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Error404 from "./pages/Error404.tsx";
 import Homepage from "./pages/Homepage.tsx";
@@ -15,6 +14,9 @@ import { AuthContextProvider } from "./context/AuthContext.tsx";
 import CharacterDetails from "./pages/CharacterDetails.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import GameApp from "./pages/GameApp.tsx";
+//styles
+import "./index.css";
+
 
 const router = createBrowserRouter([
   {

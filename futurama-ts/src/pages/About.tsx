@@ -14,6 +14,7 @@ function About() {
       style={{
         display: "flex",
         justifyContent: "center",
+        justifySelf: "center",
         flexFlow: "row wrap",
       }}
     >
@@ -24,6 +25,7 @@ function About() {
           gridTemplateColumns: "1fr 1fr",
           width: "80vw",
           justifyContent: "center",
+          
           justifyItems: "center",
         }}
       >

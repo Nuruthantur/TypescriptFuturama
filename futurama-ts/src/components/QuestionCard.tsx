@@ -1,4 +1,3 @@
-// there's nothing here yet
 import React from 'react';
 // Types
 import { AnswerObject } from '../@types/questions';
@@ -23,7 +22,7 @@ const QuestionCard: React.FC<Props> = ({
   questionNr,
   totalQuestions,
 }) => {
-  console.log(answers)
+  // console.log(answers)
   return(
   <Wrapper>
     <p className='number'>
