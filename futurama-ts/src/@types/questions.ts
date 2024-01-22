@@ -12,7 +12,7 @@ export interface gameResult {
 }
 
 
-
+//
 
 export type AnswerObject = {
   question: string;
@@ -33,9 +33,10 @@ export type QuestionsState = Question & { answers: string[] };
 export const fetchQuizQuestions = async (): Promise<QuestionsState[]> => {
   const endpoint = `https://api.sampleapis.com/futurama/questions`;
   const data = await (await fetch(endpoint)).json();
-  // console.log(data)
-  return data.results.map((question: Question) => ({
-    ...question, answers: shuffleArray([...question.correctAnswer])
+  console.log(data)
+  return data.map((question: Question) => ({
+    ...question
+
   }))
   // return data.results.map((question: Question) => ({
     // ...question, answers: shuffleArray([...question.correctAnswer])

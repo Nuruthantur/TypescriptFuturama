@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { fetchQuizQuestions } from '../@types/questions';
-import { AnswerObject } from '../@types/questions';
 // Components
 import QuestionCard from '../components/QuestionCard';
 // types
-import { QuestionsState  } from '../@types/questions';
+import { AnswerObject, fetchQuizQuestions, QuestionsState } from '../@types/questions';
 // Styles
 import { GlobalStyle, Wrapper } from '../styles/App.styles';
 
