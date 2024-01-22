@@ -11,9 +11,10 @@ import AboutMe from "./components/AboutMe.tsx";
 import AboutFuturama from "./components/AboutFuturama.tsx";
 import AuthPage from "./pages/AuthPage.tsx";
 import { AuthContextProvider } from "./context/AuthContext.tsx";
-import Game from "./pages/Game.tsx";
+// import Game from "./pages/Game.tsx";
 import CharacterDetails from "./pages/CharacterDetails.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import GameApp from "./pages/GameApp.tsx";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,8 @@ const router = createBrowserRouter([
         path: "/",
         element: <Homepage />,
       },
-      { path: "/game", element: <Game /> },
+      {path: "/game", element: <GameApp />},
+      // { path: "/game", element: <Game /> },
       {
         path: "/characters",
         element: <Characters />,

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function NavBar() {
@@ -20,9 +20,9 @@ function NavBar() {
 
   return (
     <nav style={navContainerStyles}>
+      {/* // end removes active style from  children */}
       <NavLink to={"/"}>Homepage</NavLink>
       <NavLink to={"/characters"}>Characters</NavLink>
-      {/* // end removes active style from  children */}
       <NavLink to={"/about"}>About</NavLink>
       <NavLink to={"/game"}>Game</NavLink>
       {!user ? (
