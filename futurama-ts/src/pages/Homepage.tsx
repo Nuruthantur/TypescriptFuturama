@@ -1,4 +1,4 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 // import Counter from "../components/.Counter";
 
 const Homepage = () => {

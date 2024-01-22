@@ -6,7 +6,7 @@ import { AnswerObject, fetchQuizQuestions, QuestionsState } from '../@types/ques
 // Styles
 import { GlobalStyle, Wrapper } from '../styles/App.styles';
 
-const TOTAL_QUESTIONS = 10;
+const TOTAL_QUESTIONS = 4;
 
 const GameApp: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -81,7 +81,7 @@ const GameApp: React.FC = () => {
         )}
         {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
           <button className='next' onClick={nextQuestion}>
-            Next Question
+            Next Question 
           </button>
         ) : null}
       </Wrapper>
