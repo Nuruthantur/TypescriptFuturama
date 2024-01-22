@@ -35,7 +35,7 @@ export const fetchQuizQuestions = async (): Promise<QuestionsState[]> => {
   const data = await (await fetch(endpoint)).json();
   console.log(data)
   return data.map((question: Question) => ({
-    ...question
+    ...question, answers: shuffleArray([...question.possibleAnswers])
 
   }))
   // return data.results.map((question: Question) => ({
