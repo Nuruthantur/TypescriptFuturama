@@ -21,16 +21,16 @@ function useFetch<T>(url: string): Return<T>{
                 const response = await fetch(url);
                 if (response.ok) {
                     const result = await response.json() as T;
-                    console.log(result);
+                    // console.log(result);
                     setData(result);
                 } else {
                     const result = await response.json() as FetchResultNotOK;
-                    console.log(result);
+                    // console.log(result);
                     setError(result.error);
                 }
                 setLoading(false);
             } catch (e) {
-                console.log(e);
+                // console.log(e);
                 const { message } = e as Error;
                 setError(message);
                 setLoading(false);

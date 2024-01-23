@@ -1,6 +1,6 @@
-export type Root = Root2[]
+export type Root = FuturamaInfo[]
 
-export interface Root2 {
+export interface FuturamaInfo{
   synopsis: string
   yearsAired: string
   creators: Creator[]
@@ -11,3 +11,4 @@ export interface Creator {
   name: string
   url: string
 }
+

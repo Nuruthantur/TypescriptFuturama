@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { Character } from "../@types/futurama";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+// types
+import { Character } from "../@types/futurama";
 
 type Props = {
   character: Character;
