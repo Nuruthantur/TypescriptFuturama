@@ -6,7 +6,7 @@ import { AnswerObject, fetchQuizQuestions, QuestionsState } from '../@types/ques
 // Styles
 import { GlobalStyle, Wrapper } from '../styles/App.styles';
 
-const TOTAL_QUESTIONS = 4;
+const TOTAL_QUESTIONS = 10;
 
 const GameApp: React.FC = () => {
   const [loading, setLoading] = useState(false);

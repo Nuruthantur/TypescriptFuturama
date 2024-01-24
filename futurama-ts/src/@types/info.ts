@@ -1,5 +1,8 @@
 export type Root = FuturamaInfo[]
 
+export interface FetchResultNotOK {
+  error: string
+}
 export interface FuturamaInfo{
   synopsis: string
   yearsAired: string

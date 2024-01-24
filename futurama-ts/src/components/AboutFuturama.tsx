@@ -44,11 +44,11 @@ type Props = {
 
 
 // maybe works
-
+// use props like in charactercard.tsx
 const AboutFuturama = () => {
   const location = useLocation();
   const url = `https://api.sampleapis.com/futurama/info`;
-  const { data, error, loading } = useFetch<FuturamaInfo>(url);
+  const {data: data, error, loading } = useFetch<FuturamaInfo>(url);
   console.log("hookResponse for Info", data, error, loading);
   if (error)
     return (
@@ -58,7 +58,10 @@ const AboutFuturama = () => {
     );
   if (loading)
     return (
-      <div>
+      // centering a div, version 1: {position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }
+      // centering a div, version 2: {display:"flex", alignItems:"center", justifyContent:"center"}
+      // centering a div, version 3 (fastest): {display:"grid",placeItems:"center"}
+      <div style={{display:"grid", placeItems:"center"}}>
         <h1>Loading...</h1>
       </div>
     );

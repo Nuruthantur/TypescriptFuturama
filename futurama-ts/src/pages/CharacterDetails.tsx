@@ -21,15 +21,17 @@ const CharacterDetails = () => {
 
   const handleComment = (userInput: string) => {
     if (!user || !id) return console.log("can't do this without user and id!")
-    if (userInput.trim() === "") return alert("Type!")
+    if (userInput.trim() === "") return alert("Type something!")
     // console.log(userInput);
-    const newItem = {user: user?.email, date: new Date().toDateString, comment: userInput.trim(), chId: id}
-    console.log("I will submit: ", newItem);
-    addDoc(collection(db, "users"), {
-      first: "Some",
-      last: "Person",
-      born: 1815
-    }).then((docRef) => {
+    const newItem = {
+      user: user?.email, 
+      date: new Date(), 
+      comment: userInput.trim(), 
+      chId: id,
+    }
+    console.log("I will submit: ", newItem); 
+    addDoc(collection(db, "comments"), newItem)
+    .then((docRef) => {
       console.log("Document written with ID: ", docRef.id);
     }).catch((e) => {
       console.error("Error adding document: ", e);
@@ -38,13 +40,13 @@ const CharacterDetails = () => {
 
   if (loading)
     return (
-      <div>
+      <div style={{display:"grid", placeItems:"center"}}>
         <h1>Loading...</h1>
       </div>
     );
   if (error)
     return (
-      <div>
+      <div style={{display:"grid", placeItems:"center"}}>
         <h1>{error}</h1>
       </div>
     );
@@ -58,7 +60,6 @@ const CharacterDetails = () => {
       <h3>Occupation: {character ? character.occupation : "Occupation"}</h3>
       <h3>Gender: {character ? character.gender : "Gender"}</h3>
       <ChatInput handleSubmit={handleComment} />
- 
     </div>
   );
 };
