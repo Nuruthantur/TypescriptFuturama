@@ -9,8 +9,8 @@ export interface gameResult {
   id: number
   question: string
   possibleAnswers: string[]
-  correctAnswer: any
-}
+  correctAnswer: string
+};
 
 // types for GameApp.tsx
 
@@ -30,6 +30,8 @@ export type Question = {
 
 export type QuestionsState = Question & { answers: string[] };
 
+
+// get this function out of here
 export const fetchQuizQuestions = async (): Promise<QuestionsState[]> => {
   const endpoint = `https://api.sampleapis.com/futurama/questions`; 
   const data = await (await fetch(endpoint)).json();

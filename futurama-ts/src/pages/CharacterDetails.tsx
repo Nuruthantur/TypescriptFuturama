@@ -6,7 +6,7 @@ import { Comment } from "../@types/comment";
 import { Character } from "../@types/futurama";
 import ChatInput from "../components/ChatInput";
 import { AuthContext } from "../context/AuthContext";
-import { QuerySnapshot, addDoc, collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 
 type DateObject = {

@@ -11,11 +11,8 @@ function NavBar() {
     alignItems: "center",
     padding: "0 1em",
   };
-
   // const location = useLocation();
-
   const navigation = useNavigate();
-
   const { user, logout } = useContext(AuthContext);
 
   return (
@@ -30,7 +27,6 @@ function NavBar() {
       ) : (
         <button onClick={logout}>Logout</button>
       )}
-
       <button onClick={() => navigation(-1)}>Back</button>
       {user && <p>{user.email}</p>}
     </nav>

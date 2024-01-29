@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { gameResult } from "../@types/questions";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
   game: gameResult;
@@ -10,7 +9,7 @@ type Props = {
 
 export default function GameCard({ game }: Props) {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const divStyle: React.CSSProperties = {
     border: "black 1px solid",
     padding: "1em",

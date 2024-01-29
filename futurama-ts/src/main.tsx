@@ -18,6 +18,13 @@ import GameApp from "./pages/GameApp.tsx";
 import "./index.css";
 
 
+// dangerouslysetinnerhtml - purify oder sanitation 
+
+// longer names for stuff like chId, etc.  
+
+
+
+
 const router = createBrowserRouter([
   {
     element: (

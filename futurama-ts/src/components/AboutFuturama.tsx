@@ -1,17 +1,13 @@
-import { useContext } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { Outlet, useLocation } from "react-router-dom";
 // hooks
 import useFetch from "../hooks/useFetch";
 // types
 import { FuturamaInfo } from "../@types/info";
-import { FetchResultOK } from "../@types/futurama";
-import {useEffect, useState} from 'react';
 
-type Props = {
-  data: FuturamaInfo;
-  message?: string;
-};
+// type Props = {
+//   data: FuturamaInfo;
+//   message?: string;
+// };
 
 // export default function AboutFuturama ({ data }: Props) {
 //   return (

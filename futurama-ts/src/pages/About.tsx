@@ -1,13 +1,13 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { CSSProperties } from "react";
+// import { CSSProperties } from "react";
 
 function About() {
   const location = useLocation();
-  const tabstyleActive: CSSProperties = {
-    borderTop: "solid 1px black",
-    borderRight: "solid 1px black",
-    borderLeft: "solid 1px black",
-  };
+  // const tabstyleActive: CSSProperties = {
+  //   borderTop: "solid 1px black",
+  //   borderRight: "solid 1px black",
+  //   borderLeft: "solid 1px black",
+  // };
   if (location.pathname !== "/about") return <Outlet />;
   return (
     <div
