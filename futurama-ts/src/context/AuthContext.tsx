@@ -32,10 +32,6 @@ const defaultValue: AuthContextType = {
   loading: false,
 };
 
-// interface Props extends PropsWithChildren {
-//   somethingElse: string
-// }
-
 export const AuthContext = createContext(defaultValue);
 
 export const AuthContextProvider = ({ children }: PropsWithChildren) => {
@@ -62,21 +58,25 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   const login = (email: string, password: string) => {
-    setLoading(true);
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        setUser(user);
-        setLoading(false);
-        navigate("/", { replace: true });
-      })
-      .catch((error) => {
-        const { message } = error as Error;
-        console.log(message);
-        setLoading(false);
-      });
+    if (user) navigate("/");
+    if (!user) {
+      setLoading(true);
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          setUser(user);
+          setLoading(false);
+          navigate("/", { replace: true });
+        })
+
+        .catch((error) => {
+          const { message } = error as Error;
+          console.log(message);
+          setLoading(false);
+        });
+    }
   };
 
   const logout = () => {

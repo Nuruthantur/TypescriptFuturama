@@ -16,6 +16,7 @@ import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import GameApp from "./pages/GameApp.tsx";
 //styles
 import "./index.css";
+import ProfilePage from "./pages/ProfilePage.tsx";
 
 //TODO - dangerouslysetinnerhtml - purify oder sanitation
 
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
             element: <AboutFuturama />,
           },
         ],
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
     ],
   },

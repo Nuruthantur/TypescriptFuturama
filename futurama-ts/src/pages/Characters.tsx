@@ -4,41 +4,6 @@ import CharacterCard from "../components/CharacterCard";
 import { Outlet, useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
-// export default function Characters() {
-//   const [characters, setCharacters] = useState<Character[]>([]);
-//   const [error, setError] = useState<null | string>(null);
-//   async function fetchData() {
-//     try {
-//       const response = await fetch(
-//         `https://api.sampleapis.com/futurama/characters`
-//       );
-//       if (response.ok) {
-//         const result = (await response.json()) as FetchResultOK;
-//         setCharacters(result);
-//       } else {
-//         const result = (await response.json()) as FetchResultNotOK;
-//         console.log(result);
-//         setError(result.error);
-//       }
-//     } catch (e) {
-//     }
-//   }
-//   useEffect(() => {
-//     fetchData().catch((e) => console.log(e));
-//   }, []);
-//   return (
-//     <div>
-//       <div
-//         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
-//       >
-//         {characters.map((character) => {
-//           return <CharacterCard key={character.id} character={character} />;
-//         })}
-//       </div>
-//     </div>
-//   );
-// }
-
 export default function Characters() {
   const location = useLocation();
   const [filterValue, setFilterValue] = useState("");

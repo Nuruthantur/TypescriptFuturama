@@ -8,9 +8,8 @@ const Homepage = () => {
   return (
     <div style={{ textAlign: "center" }}>
       <h1>This is the homepage</h1>
-      <p>
-        Welcome to my App!
-      </p>
+      <p>Welcome to my App!</p>
+      <p>More content coming soon.</p>
       {/* <Counter></Counter> */}
     </div>
   );

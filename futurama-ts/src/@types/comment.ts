@@ -1,7 +1,7 @@
-export interface Comment {
-    user: string
-    date: string
-    comment: string 
-    chId: string 
-    id?: string
+export interface CommentType {
+  id?: string;
+  user: string;
+  comment: string;
+  date: string;
+  chId: string;
 }
