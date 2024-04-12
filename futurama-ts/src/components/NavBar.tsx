@@ -28,6 +28,8 @@ function NavBar() {
       <NavLink to={"/characters"}>Characters</NavLink>
       <NavLink to={"/about"}>About</NavLink>
       <NavLink to={"/game"}>Game</NavLink>
+      <NavLink to={"/profile"}>Profile</NavLink>
+
       {!user ? (
         <NavLink to={"/auth"}>Login</NavLink>
       ) : (
@@ -35,7 +37,6 @@ function NavBar() {
       )}
       <button onClick={() => navigation(-1)}>Back</button>
       {user && <p>{user.email}</p>}
-      <NavLink to={"/profile"}>Profile</NavLink>
     </nav>
   );
 }
