@@ -20,6 +20,8 @@ function CharacterCard({ character }: Props) {
     flexDirection: "column",
     textAlign: "center",
     width: "150px",
+    margin: "1em",
+    alignContent: "center",
   };
   return (
     <div style={divStyle}>
@@ -28,7 +30,6 @@ function CharacterCard({ character }: Props) {
       </h3>
       {/* <p style={{ wordBreak: "break-all" }}>{character.sayings[0]}</p> */}
       <div>
-        {/* <button>More Info</button> */}
         {/* <p>{message?.toLocaleLowerCase()}</p> */}
         <img
           src={character.images.main}

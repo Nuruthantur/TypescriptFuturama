@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 // Components
 import QuestionCard from "../components/QuestionCard";
 // types
@@ -28,7 +28,7 @@ const GameApp: React.FC = () => {
     setLoading(false);
   };
 
-  const checkAnswer = (e: AnswerObject) => {
+  const checkAnswer = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (!gameOver) {
       // User's answer
       const answer = e.currentTarget.value;
@@ -46,7 +46,6 @@ const GameApp: React.FC = () => {
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
-
   const nextQuestion = () => {
     // Move to the next question if not the last question
     const nextQ = number + 1;
@@ -77,7 +76,10 @@ const GameApp: React.FC = () => {
             question={questions[number].question}
             answers={questions[number].answers}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
-            callback={checkAnswer}
+            // callback={checkAnswer}
+            callback={(e) =>
+              checkAnswer({ currentTarget: { value: e.target.value } })
+            }
           />
         )}
         {!gameOver &&

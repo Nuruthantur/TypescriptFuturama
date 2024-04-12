@@ -4,7 +4,6 @@ import CharacterCard from "../components/CharacterCard";
 import { Outlet, useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
-
 // export default function Characters() {
 //   const [characters, setCharacters] = useState<Character[]>([]);
 //   const [error, setError] = useState<null | string>(null);
@@ -15,7 +14,6 @@ import useFetch from "../hooks/useFetch";
 //       );
 //       if (response.ok) {
 //         const result = (await response.json()) as FetchResultOK;
-//         // console.log(result);
 //         setCharacters(result);
 //       } else {
 //         const result = (await response.json()) as FetchResultNotOK;
@@ -23,13 +21,11 @@ import useFetch from "../hooks/useFetch";
 //         setError(result.error);
 //       }
 //     } catch (e) {
-//       // console.log(e);
 //     }
 //   }
 //   useEffect(() => {
 //     fetchData().catch((e) => console.log(e));
 //   }, []);
-//   // console.log(characters);
 //   return (
 //     <div>
 //       <div
@@ -37,7 +33,6 @@ import useFetch from "../hooks/useFetch";
 //       >
 //         {characters.map((character) => {
 //           return <CharacterCard key={character.id} character={character} />;
-//           // message={"Hello World!"}
 //         })}
 //       </div>
 //     </div>
@@ -83,16 +78,21 @@ export default function Characters() {
           padding: "0 1em",
           display: "flex",
           justifyContent: "center",
-        }}
-      >
+          alignItems: "center",
+          flexFlow: "column wrap",
+          gap: "1em",
+        }}>
         <input onChange={handleInputChange} />
       </div>
       <div
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
-      >
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexFlow: "row wrap",
+          gap: "1em",
+        }}>
         {filtered.map((character) => {
           return <CharacterCard key={character.id} character={character} />;
-          // message={"Hello World!"}
         })}
       </div>
     </div>
