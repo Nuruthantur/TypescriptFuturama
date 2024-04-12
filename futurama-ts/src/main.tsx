@@ -17,13 +17,9 @@ import GameApp from "./pages/GameApp.tsx";
 //styles
 import "./index.css";
 
+//TODO - dangerouslysetinnerhtml - purify oder sanitation
 
-// dangerouslysetinnerhtml - purify oder sanitation 
-
-// longer names for stuff like chId, etc.  
-
-
-
+//TODO - longer names for stuff like chId, etc.
 
 const router = createBrowserRouter([
   {
@@ -39,7 +35,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Homepage />,
       },
-      {path: "/game", element: <GameApp />},
+      { path: "/game", element: <GameApp /> },
       // { path: "/game", element: <Game /> },
       {
         path: "/characters",
