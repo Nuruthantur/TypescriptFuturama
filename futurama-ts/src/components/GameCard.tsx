@@ -9,7 +9,6 @@ type Props = {
 
 export default function GameCard({ game }: Props) {
   const { user } = useContext(AuthContext);
-  // const navigate = useNavigate();
   const divStyle: React.CSSProperties = {
     border: "black 1px solid",
     padding: "1em",

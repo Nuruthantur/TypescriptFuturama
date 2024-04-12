@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // Components
-import QuestionCard from '../components/QuestionCard';
+import QuestionCard from "../components/QuestionCard";
 // types
-import { AnswerObject, fetchQuizQuestions, QuestionsState } from '../@types/questions';
+import { AnswerObject, QuestionsState } from "../@types/questions";
 // Styles
-import { GlobalStyle, Wrapper } from '../styles/App.styles';
+import { GlobalStyle, Wrapper } from "../styles/App.styles";
+import { fetchQuizQuestions } from "../utils/fetchQuizQuestions";
 
 const TOTAL_QUESTIONS = 10;
 
@@ -27,7 +28,7 @@ const GameApp: React.FC = () => {
     setLoading(false);
   };
 
-  const checkAnswer = (e: any) => {
+  const checkAnswer = (e: AnswerObject) => {
     if (!gameOver) {
       // User's answer
       const answer = e.currentTarget.value;
@@ -63,11 +64,11 @@ const GameApp: React.FC = () => {
       <Wrapper>
         <h1>Futurama Quiz</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-          <button className='start' onClick={startTrivia}>
+          <button className="start" onClick={startTrivia}>
             Start
           </button>
         ) : null}
-        {!gameOver ? <p className='score'>Score: {score}</p> : null}
+        {!gameOver ? <p className="score">Score: {score}</p> : null}
         {loading ? <p>Loading Questions...</p> : null}
         {!loading && !gameOver && (
           <QuestionCard
@@ -79,9 +80,12 @@ const GameApp: React.FC = () => {
             callback={checkAnswer}
           />
         )}
-        {!gameOver && !loading && userAnswers.length === number + 1 && number !== TOTAL_QUESTIONS - 1 ? (
-          <button className='next' onClick={nextQuestion}>
-            Next Question 
+        {!gameOver &&
+        !loading &&
+        userAnswers.length === number + 1 &&
+        number !== TOTAL_QUESTIONS - 1 ? (
+          <button className="next" onClick={nextQuestion}>
+            Next Question
           </button>
         ) : null}
       </Wrapper>

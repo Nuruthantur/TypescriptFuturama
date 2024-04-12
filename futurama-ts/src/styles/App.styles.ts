@@ -1,16 +1,18 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   html {
-    height: 100%;
+    height: 100vh;
   }
 
   body {
+
     background-color: pink;
     margin: 0;
     padding: 0 20px;
     display: flex;
     justify-content: center;
+    height: 100%;
   }
 
     font-family: 'Catamaran', sans-serif;
@@ -49,7 +51,8 @@ export const Wrapper = styled.div`
     margin: 20px;
   }
 
-  .start, .next {
+  .start,
+  .next {
     cursor: pointer;
     background: linear-gradient(180deg, #ffffff, #ffcc91);
     border: 2px solid #d38558;

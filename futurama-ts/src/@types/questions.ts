@@ -1,47 +1,30 @@
-import { shuffleArray } from "../components/utils"
-
 // types for Game.tsx
-export type gameFetchOK = gameResult[]
+export type gameFetchOK = gameResult[];
 export interface gameFetchNotOK {
-  error: string
+  error: string;
 }
 export interface gameResult {
-  id: number
-  question: string
-  possibleAnswers: string[]
-  correctAnswer: string
-};
+  id: number;
+  question: string;
+  possibleAnswers: string[];
+  correctAnswer: string;
+}
 
 // types for GameApp.tsx
 
 export type AnswerObject = {
-  question: string;
-  answer: string;
+  question: string | number;
+  answer: string | number;
   correct: boolean;
-  correctAnswer: string;
+  correctAnswer: string | number;
+  currentTarget: any;
 };
 
 export type Question = {
-  id: number
-  question: string
-  possibleAnswers: string[]
-  correctAnswer: string;
+  id: number;
+  question: string;
+  possibleAnswers: string[] | number;
+  correctAnswer: string | number;
 };
 
 export type QuestionsState = Question & { answers: string[] };
-
-
-// get this function out of here
-export const fetchQuizQuestions = async (): Promise<QuestionsState[]> => {
-  const endpoint = `https://api.sampleapis.com/futurama/questions`; 
-  const data = await (await fetch(endpoint)).json();
-  // console.log(data)
-  return data.map((question: Question) => (
-    // curly braces because it's an object
-    {
-    //spread array, shuffle possible answers
-    ...question, 
-    answers: shuffleArray([...question.possibleAnswers])
-  }
-  ))
-};

@@ -1,33 +1,31 @@
-body{
+body {
   height: auto;
-  min-height: 100%;
+  min-height: 100vh;
   width: 100%;
-  background-image: 
-  radial-gradient( rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 40%),
-  linear-gradient(180deg, rgba(0,0,0,0) 50%, #1D7EAB 50%, #1D7EAB),
-  linear-gradient(172deg, rgba(0,0,0,0) 50%, #4AE0FF 50%, #4AE0FF),
-  linear-gradient(157deg, rgba(0,0,0,0) 50%, #1D7EAB 50%, #1D7EAB),
-  linear-gradient(143deg, rgba(0,0,0,0) 50%, #4AE0FF 50%, #4AE0FF),
-  linear-gradient(127deg, rgba(0,0,0,0) 50%, #1D7EAB 50%, #1D7EAB),
-  linear-gradient(112deg, rgba(0,0,0,0) 50%, #4AE0FF 50%, #4AE0FF),
-  linear-gradient(97deg, rgba(0,0,0,0) 50%, #1D7EAB 50%, #1D7EAB),
-  linear-gradient(82deg, rgba(0,0,0,0) 50%, #4AE0FF 50%, #4AE0FF),
-  linear-gradient(67deg, rgba(0,0,0,0) 50%, #1D7EAB 50%, #1D7EAB),
-  linear-gradient(52deg, rgba(0,0,0,0) 50%, #4AE0FF 50%, #4AE0FF),
-  linear-gradient(37deg, rgba(0,0,0,0) 50%, #1D7EAB 50%, #1D7EAB),
-  linear-gradient(22deg, rgba(0,0,0,0) 50%, #4AE0FF 50%, #4AE0FF),
-  linear-gradient(8deg, rgba(0,0,0,0) 50%, #1D7EAB 50%, #1D7EAB),
-  linear-gradient(0deg, rgba(0,0,0,0) 50%, #4AE0FF 50%, #4AE0FF);
+  background-image: radial-gradient(
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0) 40%
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, #1d7eab 50%, #1d7eab),
+    linear-gradient(172deg, rgba(0, 0, 0, 0) 50%, #4ae0ff 50%, #4ae0ff),
+    linear-gradient(157deg, rgba(0, 0, 0, 0) 50%, #1d7eab 50%, #1d7eab),
+    linear-gradient(143deg, rgba(0, 0, 0, 0) 50%, #4ae0ff 50%, #4ae0ff),
+    linear-gradient(127deg, rgba(0, 0, 0, 0) 50%, #1d7eab 50%, #1d7eab),
+    linear-gradient(112deg, rgba(0, 0, 0, 0) 50%, #4ae0ff 50%, #4ae0ff),
+    linear-gradient(97deg, rgba(0, 0, 0, 0) 50%, #1d7eab 50%, #1d7eab),
+    linear-gradient(82deg, rgba(0, 0, 0, 0) 50%, #4ae0ff 50%, #4ae0ff),
+    linear-gradient(67deg, rgba(0, 0, 0, 0) 50%, #1d7eab 50%, #1d7eab),
+    linear-gradient(52deg, rgba(0, 0, 0, 0) 50%, #4ae0ff 50%, #4ae0ff),
+    linear-gradient(37deg, rgba(0, 0, 0, 0) 50%, #1d7eab 50%, #1d7eab),
+    linear-gradient(22deg, rgba(0, 0, 0, 0) 50%, #4ae0ff 50%, #4ae0ff),
+    linear-gradient(8deg, rgba(0, 0, 0, 0) 50%, #1d7eab 50%, #1d7eab),
+    linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, #4ae0ff 50%, #4ae0ff);
   background-position: 0% 0%;
-    background-size: 100% 200%;
-    box-sizing: border-box;
-    /* margin: 0; */
-    /* padding: 2rem 0; */
-    /* position: center; */
-  /* background-position: 50% -100%;  */
+  background-size: 100% 200%;
+  box-sizing: border-box;
   background-size: contain;
-  background-repeat: no-repeat; 
-  } 
+  background-repeat: no-repeat;
+}
 
 #root {
   width: 100%;
@@ -40,4 +38,3 @@ body{
 .inactive {
   color: blue;
 }
-
