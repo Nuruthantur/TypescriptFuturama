@@ -1,84 +1,76 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+// Component for updating user profile information
 function UpdateProfilePage() {
-  const { loading } = useContext(AuthContext);
+  // Initialize the useNavigate hook to navigate between pages
+  const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  // Set up state variables for user profile information
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [birthDcate, setBirthDate] = useState("");
-  const [gender, setGender] = useState("");
   const [bio, setBio] = useState("");
   const [location, setLocation] = useState("");
 
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-  // userPicture
+  // Function to handle form submission
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("hi mom!");
+  };
 
+  // Render the form for updating user profile information
   return (
-    <>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          //    if (!email || !password) return alert("all fields must be included");
-          console.log("submitting");
-          //    submit;
-        }}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+    <div style={{}}>
+      <form onSubmit={handleFormSubmit}>
+        <label>First Name</label>
         <input
           type="text"
-          name="username"
-          value={username}
-          onChange={(e) => console.log(e)}
-        />
-        <input
-          type="text"
+          placeholder="First name"
           name="firstName"
           value={firstName}
-          onChange={(e) => console.log(e)}
+          onChange={(e) => setFirstName(e.target.value)}
         />
+        <label>Last Name</label>
         <input
           type="text"
+          placeholder="Last name"
           name="lastName"
           value={lastName}
-          onChange={(e) => console.log(e)}
+          onChange={(e) => setLastName(e.target.value)}
         />
-        <input
-          type="text"
-          name="birthDcate"
-          value={birthDcate}
-          onChange={(e) => console.log(e)}
-        />
-        <input
-          type="text"
-          name="gender"
-          value={gender}
-          onChange={(e) => console.log(e)}
-        />
+        {/* <label>Date of Birth</label>
+          <input
+            type="text"
+            placeholder="Date of birth"
+            name="birthDate"
+            value={formData.birthDate}
+            onChange={(e) => handleInputChange(e)}
+          /> */}
+        <label>Bio</label>
         <input
           type="text"
           name="bio"
+          placeholder="bio"
           value={bio}
-          onChange={(e) => console.log(e)}
+          onChange={(e) => setBio(e.target.value)}
         />
+        <label>Location</label>
         <input
           type="text"
           name="location"
           value={location}
-          onChange={(e) => console.log(e)}
+          onChange={(e) => setLocation(e.target.value)}
         />
         <button type="submit">Update</button>
         {/* <button type="submit">{loading ? "Loading..." : submit}</button> */}
       </form>
-      <button>Got back to Profile Page</button>
-    </>
+      <button
+        onClick={() => {
+          navigate("/profile");
+        }}>
+        Got back to Profile Page
+      </button>
+    </div>
   );
 }
 
