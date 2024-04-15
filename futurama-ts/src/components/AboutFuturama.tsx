@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 // types
 import { FuturamaInfo } from "../@types/info";
+import Spinner from "./spinners/Spinner";
 // import { useEffect, useState } from "react";
 
 export default function AboutFuturama() {
@@ -18,12 +19,7 @@ export default function AboutFuturama() {
         <h1>{error}</h1>
       </div>
     );
-  if (loading)
-    return (
-      <div style={{ display: "grid", placeItems: "center" }}>
-        <h1>Loading...</h1>
-      </div>
-    );
+  if (loading) return <Spinner />;
   if (location.pathname !== "/about/futurama") return <Outlet />;
   return (
     <div

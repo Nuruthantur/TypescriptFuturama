@@ -9,6 +9,7 @@ import {
   type User,
 } from "@firebase/auth";
 import { auth } from "../firebase";
+import Spinner from "../components/spinners/Spinner";
 
 interface AuthContextType {
   user: User | null;
@@ -84,7 +85,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
       .then(() => {
         // Sign-out successful.
         setUser(null);
-        console.log("user successfully logged out");
+        console.log("User successfully logged out");
       })
       .catch((error) => {
         // An error happened.
@@ -102,12 +103,20 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
           setUser(user);
         } else {
           setUser(null);
+          console.log("user is logged out");
         }
         setLoading(false);
       });
     };
     getActiveUser();
   }, []);
+
+  if (loading == true)
+    return (
+      <>
+        <Spinner />
+      </>
+    );
 
   return (
     <AuthContext.Provider value={{ user, login, logout, signup, loading }}>

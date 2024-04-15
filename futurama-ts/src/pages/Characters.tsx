@@ -3,6 +3,7 @@ import { FetchResultOK } from "../@types/futurama";
 import CharacterCard from "../components/CharacterCard";
 import { Outlet, useLocation } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import Spinner from "../components/spinners/Spinner";
 
 export default function Characters() {
   const location = useLocation();
@@ -31,7 +32,7 @@ export default function Characters() {
   if (loading)
     return (
       <div>
-        <h1>Loading...</h1>
+        <Spinner />
       </div>
     );
   if (location.pathname !== "/characters") return <Outlet />;

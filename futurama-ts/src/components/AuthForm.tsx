@@ -19,8 +19,7 @@ const AuthForm = ({ submitTitle, submit }: Props) => {
         if (!email || !password) return alert("all fields must be included");
         console.log("submitting");
         submit(email, password);
-      }}
-    >
+      }}>
       <input
         type="email"
         placeholder="Email"
@@ -33,7 +32,7 @@ const AuthForm = ({ submitTitle, submit }: Props) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">{loading ? "Loading..." : submitTitle}</button>
+      <button type="submit">{loading ? loading : submitTitle}</button>
     </form>
   );
 };
