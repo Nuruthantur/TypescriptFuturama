@@ -17,7 +17,7 @@ export type AnswerObject = {
   answer: string | number;
   correct: boolean;
   correctAnswer: string | number;
-  currentTarget: any;
+  currentTarget: string;
 };
 
 export type Question = {

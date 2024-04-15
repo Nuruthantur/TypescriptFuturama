@@ -28,12 +28,15 @@ function NavBar() {
       <NavLink to={"/characters"}>Characters</NavLink>
       <NavLink to={"/about"}>About</NavLink>
       <NavLink to={"/game"}>Game</NavLink>
-      <NavLink to={"/profile"}>Profile</NavLink>
       {/* <NavLink to={"/update"}>Update</NavLink> */}
       {!user ? (
         <NavLink to={"/auth"}>Login</NavLink>
       ) : (
-        <button onClick={logout}>Logout</button>
+        <>
+          <NavLink to={"/profile"}>Profile</NavLink>
+
+          <button onClick={logout}>Logout</button>
+        </>
       )}
       <button onClick={() => navigation(-1)}>Back</button>
       {user && <p>{user.email}</p>}

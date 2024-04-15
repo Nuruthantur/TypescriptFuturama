@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 // Component for updating user profile information
 function UpdateProfilePage() {
@@ -11,6 +12,8 @@ function UpdateProfilePage() {
   });
   // Initialize the useNavigate hook to navigate between pages
   const navigate = useNavigate();
+
+  const { loading } = useContext(AuthContext);
 
   // Function to handle form submission
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -46,14 +49,7 @@ function UpdateProfilePage() {
           value={formData.lastName}
           onChange={handleChange}
         />
-        {/* <label>Date of Birth</label>
-          <input
-            type="text"
-            placeholder="Date of birth"
-            name="birthDate"
-            value={formData.birthDate}
-            onChange={(e) => handleInputChange(e)}
-          /> */}
+
         <label>Bio</label>
         <input
           type="text"
@@ -69,8 +65,7 @@ function UpdateProfilePage() {
           value={formData.location}
           onChange={handleChange}
         />
-        <button type="submit">Update</button>
-        {/* <button type="submit">{loading ? "Loading..." : submit}</button> */}
+        <button type="submit">{loading ? loading : "submit"}</button>
       </form>
       <button
         onClick={() => {

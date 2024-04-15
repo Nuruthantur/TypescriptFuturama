@@ -16,13 +16,13 @@ type DateObject = {
 };
 
 const CharacterDetails = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const { id } = useParams();
   const url = id ? `https://api.sampleapis.com/futurama/characters/${id}` : "";
 
   const [comments, setComments] = useState<CommentType[]>([]);
 
-  const { data: character, error, loading } = useFetch<Character>(url);
+  const { data: character, error } = useFetch<Character>(url);
   // console.log("hookResponse", character, error, loading);
 
   const handleComment = (

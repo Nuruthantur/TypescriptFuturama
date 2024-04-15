@@ -29,12 +29,8 @@ export default function Characters() {
         <h1>{error}</h1>
       </div>
     );
-  if (loading)
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
+  if (loading) return <Spinner />;
+
   if (location.pathname !== "/characters") return <Outlet />;
   return (
     <div>
