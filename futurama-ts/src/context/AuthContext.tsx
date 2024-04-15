@@ -84,6 +84,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
       .then(() => {
         // Sign-out successful.
         setUser(null);
+        console.log("user successfully logged out");
       })
       .catch((error) => {
         // An error happened.

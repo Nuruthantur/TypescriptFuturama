@@ -3,19 +3,27 @@ import { useNavigate } from "react-router-dom";
 
 // Component for updating user profile information
 function UpdateProfilePage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    bio: "",
+    location: "",
+  });
   // Initialize the useNavigate hook to navigate between pages
   const navigate = useNavigate();
 
-  // Set up state variables for user profile information
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [bio, setBio] = useState("");
-  const [location, setLocation] = useState("");
-
   // Function to handle form submission
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("hi mom!");
+    if (!formData)
+      return alert("you have to change something to update your data");
+    //   submit({...formData, [e.target.type]: e.target.value})
+  };
+
+  // Function to handle input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   // Render the form for updating user profile information
@@ -27,16 +35,16 @@ function UpdateProfilePage() {
           type="text"
           placeholder="First name"
           name="firstName"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          value={formData.firstName}
+          onChange={handleChange}
         />
         <label>Last Name</label>
         <input
           type="text"
           placeholder="Last name"
           name="lastName"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          value={formData.lastName}
+          onChange={handleChange}
         />
         {/* <label>Date of Birth</label>
           <input
@@ -51,15 +59,15 @@ function UpdateProfilePage() {
           type="text"
           name="bio"
           placeholder="bio"
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
+          value={formData.bio}
+          onChange={handleChange}
         />
         <label>Location</label>
         <input
           type="text"
           name="location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          value={formData.location}
+          onChange={handleChange}
         />
         <button type="submit">Update</button>
         {/* <button type="submit">{loading ? "Loading..." : submit}</button> */}
