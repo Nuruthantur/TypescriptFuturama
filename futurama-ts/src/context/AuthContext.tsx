@@ -17,6 +17,8 @@ interface AuthContextType {
   logout: () => void;
   signup: (email: string, password: string) => void;
   loading: boolean;
+  toggleTheme: string;
+  toggleThemeHandler: () => void;
 }
 
 const defaultValue: AuthContextType = {
@@ -31,6 +33,10 @@ const defaultValue: AuthContextType = {
     throw new Error("no provider");
   },
   loading: false,
+  toggleTheme: "",
+  toggleThemeHandler: () => {
+    throw new Error("no provider");
+  },
 };
 
 export const AuthContext = createContext(defaultValue);
@@ -39,6 +45,12 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const [toggleTheme, setToggleTheme] = useState<string>("light");
+
+  const toggleThemeHandler = () => {
+    setToggleTheme(toggleTheme === "light" ? "dark" : "light");
+  };
 
   const signup = (email: string, password: string) => {
     setLoading(true);
@@ -119,7 +131,16 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
     );
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, signup, loading }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        signup,
+        loading,
+        toggleTheme,
+        toggleThemeHandler: toggleThemeHandler,
+      }}>
       {children}
     </AuthContext.Provider>
   );

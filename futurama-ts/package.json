@@ -13,6 +13,7 @@
     "firebase": "^10.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-feather": "^2.0.10",
     "react-router-dom": "^6.21.1",
     "react-spinners": "^0.13.8",
     "styled-components": "^6.1.8"

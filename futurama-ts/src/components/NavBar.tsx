@@ -1,28 +1,43 @@
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-
+import { Sun, Moon } from "react-feather";
+type NavContainerStyle = {
+  height: string;
+  border: string;
+  display: string;
+  gap: string;
+  alignItems: string;
+  padding: string;
+  backgroundColor: string;
+  color: string;
+};
 // A functional component that displays a navigation bar
 function NavBar() {
-  // The component uses the useContext hook to access the AuthContext and retrieve the user and logout function
-  // The component also uses the useNavigate hook to navigate to different pages
-  const navContainerStyles = {
+  const navContainerStyle: NavContainerStyle = {
     height: "50px",
     border: "solid 1px black",
     display: "flex",
     gap: "1em",
     alignItems: "center",
     padding: "0 1em",
+    backgroundColor: "#4AE0FF",
+    color: "black",
   };
   const navigation = useNavigate();
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, toggleTheme, toggleThemeHandler } =
+    useContext(AuthContext);
+
+  navContainerStyle.backgroundColor =
+    toggleTheme === "light" ? "white" : "black";
+  navContainerStyle.color = toggleTheme === "light" ? "black" : "white";
 
   // The component returns a nav element that contains several NavLink and button elements
   // The NavLink elements navigate to different pages, and the button elements perform various actions
   // The component also displays the user's email if they are logged in
 
   return (
-    <nav style={navContainerStyles}>
+    <nav style={navContainerStyle}>
       {/* // end removes active style from  children */}
       <NavLink to={"/"}>Homepage</NavLink>
       <NavLink to={"/characters"}>Characters</NavLink>
@@ -39,7 +54,17 @@ function NavBar() {
         </>
       )}
       <button onClick={() => navigation(-1)}>Back</button>
-      {user && <p>{user.email}</p>}
+      <button
+        onClick={() => navigation("/profile")}
+        style={{ backgroundColor: "white", border: "none" }}>
+        {user && user.email}
+      </button>
+
+      <button
+        onClick={() => toggleThemeHandler()}
+        style={{ backgroundColor: "white", border: "none" }}>
+        {toggleTheme === "light" ? <Moon /> : <Sun />}
+      </button>
     </nav>
   );
 }
