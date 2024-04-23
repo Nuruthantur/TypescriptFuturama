@@ -10,12 +10,20 @@ import {
 } from "@firebase/auth";
 import { auth } from "../firebase";
 import Spinner from "../components/spinners/Spinner";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => void;
   logout: () => void;
   signup: (email: string, password: string) => void;
+  // updateProfile: (
+  //   firstName: string,
+  //   lastName: string,
+  //   bio: string,
+  //   location: string
+  // ) => void;
   loading: boolean;
   toggleTheme: string;
   toggleThemeHandler: () => void;
@@ -32,6 +40,7 @@ const defaultValue: AuthContextType = {
   signup: () => {
     throw new Error("no provider");
   },
+
   loading: false,
   toggleTheme: "",
   toggleThemeHandler: () => {
@@ -45,29 +54,11 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-
+  // const auth = getAuth();
   const [toggleTheme, setToggleTheme] = useState<string>("light");
 
   const toggleThemeHandler = () => {
     setToggleTheme(toggleTheme === "light" ? "dark" : "light");
-  };
-
-  const signup = (email: string, password: string) => {
-    setLoading(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log(user);
-        setUser(user);
-        setLoading(false);
-        navigate("/", { replace: true });
-      })
-      .catch((error) => {
-        const { message } = error as Error;
-        console.log(message);
-        setLoading(false);
-      });
   };
 
   const login = (email: string, password: string) => {
@@ -105,6 +96,34 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
       });
   };
 
+  const signup = (email: string, password: string) => {
+    setLoading(true);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+        setUser(user);
+        const newItem = {
+          user: user?.uid,
+          date: new Date(),
+          firstName: "",
+          lastName: "",
+          bio: "",
+          location: "",
+          id: "",
+        };
+        addDoc(collection(db, "users"), newItem);
+        setLoading(false);
+        navigate("/", { replace: true });
+      })
+      .catch((error) => {
+        const { message } = error as Error;
+        console.log(message);
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
     const getActiveUser = () => {
       onAuthStateChanged(auth, (user) => {
@@ -137,6 +156,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         login,
         logout,
         signup,
+
         loading,
         toggleTheme,
         toggleThemeHandler: toggleThemeHandler,
