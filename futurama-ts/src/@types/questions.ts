@@ -7,7 +7,7 @@ export interface gameResult {
   id: number;
   question: string;
   possibleAnswers: string[];
-  correctAnswer: string;
+  correctAnswer: number | string;
 }
 
 // types for GameApp.tsx

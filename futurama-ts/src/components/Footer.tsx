@@ -11,8 +11,9 @@ type FooterStyle = {
   width: string;
   color: string | undefined;
 };
+
 export const Footer = () => {
-  const { toggleTheme, toggleThemeHandler } = useContext(AuthContext);
+  const { toggleTheme } = useContext(AuthContext);
   const footerStyle: FooterStyle = {
     backgroundColor: "#f5f5f5",
     padding: "20px",

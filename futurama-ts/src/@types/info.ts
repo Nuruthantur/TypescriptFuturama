@@ -9,3 +9,15 @@ export interface FuturamaInfo {
   creators: { name: string; url: string }[];
   id: number;
 }
+
+export interface Info {
+  synopsis: string;
+  yearsAired: string;
+  creators: Creator[];
+  id: number;
+}
+
+export interface Creator {
+  name: string;
+  url: string;
+}
