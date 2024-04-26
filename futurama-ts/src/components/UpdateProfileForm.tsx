@@ -2,7 +2,8 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+
 import { db } from "../firebase";
 
 type Props = {
@@ -36,28 +37,50 @@ const UpdateProfileForm = ({ submitTitle }: Props) => {
     location: "",
   });
   const navigate = useNavigate();
-
+  //TODO - fix this
   const activeUser: activeUser = getMe();
   console.log(activeUser);
+  //TODO - updating the profile creates a NEW document in the users collection instead of updating the current one
+  // const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   if (!formData)
+  //     return alert("you have to change something to update your data");
+  //   const updatedItem = {
+  //     user: user?.uid,
+  //     date: new Date(),
+  //     firstName: formData.firstName,
+  //     lastName: formData.lastName,
+  //     bio: formData.bio,
+  //     location: formData.location,
+  //   };
+  //   console.log(updatedItem);
+  //   try {
+  //     const docRef = await addDoc(collection(db, "users"), updatedItem);
+  //     console.log("Document written with ID: ", docRef.id);
+  //   } catch (error) {
+  //     console.log("Error adding document: ", error);
+  //   }
+  // };
 
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData)
       return alert("you have to change something to update your data");
-    const updatedItem = {
-      user: user?.uid,
-      date: new Date(),
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      bio: formData.bio,
-      location: formData.location,
-    };
-    console.log(updatedItem);
+
+    // Get the reference to the document you want to update
+    const docRef = doc(collection(db, "users"), user?.uid);
+
     try {
-      const docRef = await addDoc(collection(db, "users"), updatedItem);
-      console.log("Document written with ID: ", docRef.id);
+      // Update the document
+      await updateDoc(docRef, {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        bio: formData.bio,
+        location: formData.location,
+      });
+      console.log("Document updated successfully");
     } catch (error) {
-      console.log("Error adding document: ", error);
+      console.log("Error updating document: ", error);
     }
   };
 
@@ -67,11 +90,11 @@ const UpdateProfileForm = ({ submitTitle }: Props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    if (activeUser) {
-      setFormData(activeUser);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (activeUser) {
+  //     setFormData(activeUser);
+  //   }
+  // }, []);
 
   return (
     <div style={{}}>
