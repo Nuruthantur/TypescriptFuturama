@@ -1,7 +1,7 @@
-import { FormEvent, useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { FormEvent, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { getAuth, updateProfile } from "firebase/auth";
+
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -15,11 +15,21 @@ type Props = {
   //   ) => void;
 };
 
+type activeUser = {
+  id: string;
+  displayName?: string;
+  firstName?: string;
+  lastName?: string;
+  bio?: string;
+  location?: string;
+};
+
 // Component for updating user profile information
 const UpdateProfileForm = ({ submitTitle }: Props) => {
-  const { user, loading } = useContext(AuthContext);
-  const { id } = useParams();
+  const { loading, user, getMe } = useContext(AuthContext);
+
   const [formData, setFormData] = useState({
+    displayName: "",
     firstName: "",
     lastName: "",
     bio: "",
@@ -27,25 +37,8 @@ const UpdateProfileForm = ({ submitTitle }: Props) => {
   });
   const navigate = useNavigate();
 
-  // the updateProfile function can ONLY be used for displayname and photoURL!
-  //   const auth = getAuth();
-  //   if (auth.currentUser) {
-  //     updateProfile(auth.currentUser, {
-  //       displayName: "Jane Q. User",
-  //     })
-  //       .then(() => {
-  //         console.log("profile updated");
-  //         // Profile updated!
-  //         // ...
-  //       })
-  //       .catch((error: string) => {
-  //         console.log("could not update profile", error);
-  //         // An error occurred
-  //         // ...
-  //       });
-  //   } else {
-  //     console.log("No current user to update profile");
-  //   }
+  const activeUser: activeUser = getMe();
+  console.log(activeUser);
 
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,7 +51,6 @@ const UpdateProfileForm = ({ submitTitle }: Props) => {
       lastName: formData.lastName,
       bio: formData.bio,
       location: formData.location,
-      id: id,
     };
     console.log(updatedItem);
     try {
@@ -75,9 +67,23 @@ const UpdateProfileForm = ({ submitTitle }: Props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    if (activeUser) {
+      setFormData(activeUser);
+    }
+  }, []);
+
   return (
     <div style={{}}>
       <form onSubmit={handleFormSubmit}>
+        <label>Display Name</label>
+        <input
+          type="text"
+          placeholder="display name"
+          name="displayName"
+          value={formData.displayName}
+          onChange={handleChange}
+        />
         <label>First Name</label>
         <input
           type="text"

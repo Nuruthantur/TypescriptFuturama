@@ -3,6 +3,7 @@ import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
+  getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
@@ -10,7 +11,7 @@ import {
 } from "@firebase/auth";
 import { auth } from "../firebase";
 import Spinner from "../components/spinners/Spinner";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 
 interface AuthContextType {
@@ -18,6 +19,7 @@ interface AuthContextType {
   login: (email: string, password: string) => void;
   logout: () => void;
   signup: (email: string, password: string) => void;
+  getMe: () => void;
   // updateProfile: (
   //   firstName: string,
   //   lastName: string,
@@ -40,6 +42,12 @@ const defaultValue: AuthContextType = {
   signup: () => {
     throw new Error("no provider");
   },
+  getMe: () => {
+    throw new Error("no provider");
+  },
+  // updateProfile: () => {
+  //   throw new Error("no provider");
+  // },
 
   loading: false,
   toggleTheme: "",
@@ -107,6 +115,8 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         const newItem = {
           user: user?.uid,
           date: new Date(),
+          displayName: "",
+          email: email,
           firstName: "",
           lastName: "",
           bio: "",
@@ -122,6 +132,28 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         console.log(message);
         setLoading(false);
       });
+  };
+
+  const getMe = async () => {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (!user) {
+        console.log("No user is currently logged in.");
+        return;
+      }
+
+      const q = query(collection(db, "users"), where("user", "==", user.uid));
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((doc) => {
+        console.log("logged in user: ", doc.data());
+        return doc.data();
+      });
+    } catch (error) {
+      console.log("Error fetching user data:", error);
+    }
   };
 
   useEffect(() => {
@@ -156,7 +188,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         login,
         logout,
         signup,
-
+        getMe,
         loading,
         toggleTheme,
         toggleThemeHandler: toggleThemeHandler,
