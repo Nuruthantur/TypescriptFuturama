@@ -3,5 +3,5 @@ export interface CommentType {
   user: string;
   comment: string;
   date: string;
-  chId: string;
+  characterID: string;
 }

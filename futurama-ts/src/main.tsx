@@ -1,27 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import Error404 from "./pages/Error404.tsx";
-import Homepage from "./pages/Homepage.tsx";
-import Characters from "./pages/Characters.tsx";
-import Layout from "./components/Layout.tsx";
-import About from "./pages/About.tsx";
-import AboutMe from "./components/AboutMe.tsx";
-import AboutFuturama from "./components/AboutFuturama.tsx";
-import AuthPage from "./pages/AuthPage.tsx";
+// AUTH CONTEXT
 import { AuthContextProvider } from "./context/AuthContext.tsx";
-
-import CharacterDetails from "./pages/CharacterDetails.tsx";
+// COMPONENTS
+import AboutFuturama from "./components/AboutFuturama.tsx";
+import AboutMe from "./components/AboutMe.tsx";
+import Layout from "./components/Layout.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
-import GameApp from "./pages/GameApp.tsx";
-//styles
+// STYLES
 import "./index.css";
+// PAGES
+import Homepage from "./pages/Homepage.tsx";
+import GameApp from "./pages/GameApp.tsx";
+import Characters from "./pages/Characters.tsx";
+import CharacterDetails from "./pages/CharacterDetails.tsx";
+import About from "./pages/About.tsx";
+import AuthPage from "./pages/AuthPage.tsx";
 import ProfilePage from "./pages/ProfilePage.tsx";
 import UpdateProfilePage from "./pages/UpdateProfilePage.tsx";
+import Error404 from "./pages/Error404.tsx";
 
-//TODO - dangerouslysetinnerhtml - purify oder sanitation
+//NOTE - dangerouslysetinnerhtml - purify oder sanitation - DONE!
 
-//TODO - longer names for stuff like chId, etc.
+//NOTE - longer names for stuff like chId, etc. - DONE!
 
 const router = createBrowserRouter([
   {

@@ -36,7 +36,7 @@ const CharacterDetails = () => {
       user: user?.email,
       date: new Date(),
       comment: userInput.trim(),
-      chId: id,
+      characterID: id,
     };
     console.log("I will submit: ", newItem);
     addDoc(collection(db, "comments"), newItem)
@@ -51,7 +51,7 @@ const CharacterDetails = () => {
 
   // existing comments as snapshot
   // const getExistingComments = () => {
-  //   const q = query(collection(db, "comments"), where("chId", "==", id), orderBy("date"));
+  //   const q = query(collection(db, "comments"), where("characterID", "==", id), orderBy("date"));
   //   getDocs(q)
   //     .then((querySnapshot) => {
   //       const commentsArray: Comment[] = [];
@@ -59,7 +59,7 @@ const CharacterDetails = () => {
   //         const date = doc.data().date as DateObject;
   //         commentsArray.push({
   //           id: doc.id,
-  //           chId: doc.data().chId as string,
+  //           characterID: doc.data().characterID as string,
   //           date: new Date(date.seconds * 1000).toDateString(),
   //           comment: doc.data().comment as string,
   //           user: doc.data().user as string
@@ -76,7 +76,10 @@ const CharacterDetails = () => {
   // existing comments live view
   useEffect(() => {
     const getExistingComments = () => {
-      const q = query(collection(db, "comments"), where("chId", "==", id));
+      const q = query(
+        collection(db, "comments"),
+        where("characterID", "==", id)
+      );
       getDocs(q)
         .then((querySnapshot) => {
           const commentsArray: CommentType[] = [];
@@ -84,7 +87,7 @@ const CharacterDetails = () => {
             const date = doc.data().date as DateObject;
             commentsArray.push({
               id: doc.id,
-              chId: doc.data().chId as string,
+              characterID: doc.data().characterID as string,
               date: new Date(date.seconds * 1000).toDateString(),
               comment: doc.data().comment as string,
               user: doc.data().user as string,

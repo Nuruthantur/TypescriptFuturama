@@ -1,34 +1,43 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 type FooterStyle = {
   backgroundColor: string;
-  padding: string;
   borderTop: string;
-  textAlign: "center";
-  position: "static" | "relative" | "fixed";
   bottom: string;
-  width: string;
   color: string | undefined;
+  display: string;
+  padding: string;
+  position: "static" | "relative" | "fixed";
+  textAlign: "center";
+  width: string;
+  alignItems: string;
+  justifyContent: string;
 };
 
 export const Footer = () => {
   const { toggleTheme } = useContext(AuthContext);
   const footerStyle: FooterStyle = {
     backgroundColor: "#f5f5f5",
-    padding: "20px",
     borderTop: "1px solid #ccc",
-    textAlign: "center",
-    position: "fixed",
+
     bottom: "0",
-    width: "100%",
     color: "black",
+    display: "flex",
+    padding: "20px 0 20px 0 ",
+    position: "fixed",
+    width: "90%",
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
   };
   footerStyle.backgroundColor = toggleTheme === "light" ? "white" : "black";
   footerStyle.color = toggleTheme === "light" ? "black" : "white";
   return (
     <footer style={footerStyle}>
-      <h1 style={{ margin: "0" }}>hi mom</h1>
+      <div>
+        <h1 style={{ margin: "0" }}>hi mom, look at my awesome footer</h1>
+      </div>
     </footer>
   );
 };

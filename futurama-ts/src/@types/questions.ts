@@ -6,25 +6,26 @@ export interface gameFetchNotOK {
 export interface gameResult {
   id: number;
   question: string;
-  possibleAnswers: string[];
-  correctAnswer: number | string;
+  possibleAnswers: string[] | number[];
+  correctAnswer: string | number;
 }
 
 // types for GameApp.tsx
 
 export type AnswerObject = {
-  question: string | number;
+  question: string;
   answer: string | number;
   correct: boolean;
   correctAnswer: string | number;
-  currentTarget: string;
+  // currentTarget: string;
 };
 
 export type Question = {
   id: number;
   question: string;
-  possibleAnswers: string[] | number;
+  possibleAnswers: string[] | number[];
   correctAnswer: string | number;
+  answer: string[] | number[];
 };
 
 export type QuestionsState = Question & { answers: string[] };

@@ -13,7 +13,11 @@ const GameApp: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState<QuestionsState[]>([]);
   const [number, setNumber] = useState(0);
+  //NOTE - Option 1 - with AnswerObject
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
+  //NOTE - Option 2 - without AnswerObject
+  // const [userAnswers, setUserAnswers] = useState([]);
+
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
 
@@ -28,24 +32,38 @@ const GameApp: React.FC = () => {
     setLoading(false);
   };
 
-  const checkAnswer = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const checkAnswer = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (!gameOver) {
       // User's answer
       const answer = e.currentTarget.value;
       // Check answer against correct answer
-      const correct = questions[number].correctAnswer === answer;
+      const correct = questions[number]?.correctAnswer === answer;
       // Add score if answer is correct
       if (correct) setScore((prev) => prev + 1);
       // Save the answer in the array for user answers
-      const answerObject = {
+      //NOTE - Option 1
+      const answerObject: AnswerObject = {
         question: questions[number].question,
         answer,
-        correct,
+        correct: questions[number].correctAnswer === answer,
         correctAnswer: questions[number].correctAnswer,
       };
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
+  //NOTE - Option 2
+  //     setUserAnswers((prev) => [
+  //       ...prev,
+  //       {
+  //         question: questions[number].question,
+  //         answer,
+  //         correct: questions[number].correctAnswer === answer,
+  //         correctAnswer: questions[number].correctAnswer,
+  //       },
+  //     ]);
+  //   }
+  // };
+
   const nextQuestion = () => {
     // Move to the next question if not the last question
     const nextQ = number + 1;

@@ -2,15 +2,18 @@ import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Sun, Moon } from "react-feather";
+
 type NavContainerStyle = {
-  height: string;
+  backgroundColor: string;
   border: string;
+  color: string;
   display: string;
   gap: string;
-  alignItems: string;
+  height: string;
   padding: string;
-  backgroundColor: string;
-  color: string;
+  width: string;
+  alignItems: string;
+  justifyContent: string;
 };
 // A functional component that displays a navigation bar
 function NavBar() {
@@ -19,10 +22,12 @@ function NavBar() {
     border: "solid 1px black",
     display: "flex",
     gap: "1em",
-    alignItems: "center",
     padding: "0 1em",
     backgroundColor: "#4AE0FF",
     color: "black",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   };
   const navigation = useNavigate();
   const { user, logout, toggleTheme, toggleThemeHandler } =

@@ -2,7 +2,7 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { collection, doc, updateDoc } from "firebase/firestore";
 
 import { db } from "../firebase";
 
@@ -16,14 +16,14 @@ type Props = {
   //   ) => void;
 };
 
-type activeUser = {
-  id: string;
-  displayName?: string;
-  firstName?: string;
-  lastName?: string;
-  bio?: string;
-  location?: string;
-};
+// type activeUser = {
+//   id: string;
+//   displayName?: string;
+//   firstName?: string;
+//   lastName?: string;
+//   bio?: string;
+//   location?: string;
+// };
 
 // Component for updating user profile information
 const UpdateProfileForm = ({ submitTitle }: Props) => {
@@ -38,7 +38,7 @@ const UpdateProfileForm = ({ submitTitle }: Props) => {
   });
   const navigate = useNavigate();
   //TODO - fix this
-  const activeUser: activeUser = getMe();
+  const activeUser = getMe();
   console.log(activeUser);
   //TODO - updating the profile creates a NEW document in the users collection instead of updating the current one
   // const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -68,6 +68,7 @@ const UpdateProfileForm = ({ submitTitle }: Props) => {
       return alert("you have to change something to update your data");
 
     // Get the reference to the document you want to update
+    //NOTE - do a check for user.uid inside of the document of user (not if the doc == user.uid)
     const docRef = doc(collection(db, "users"), user?.uid);
 
     try {

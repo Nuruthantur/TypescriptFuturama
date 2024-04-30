@@ -28,7 +28,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
       <p className="number">
         Question: {questionNr} / {totalQuestions}
       </p>
-      {/* <p dangerouslySetInnerHTML={{ __html: question }} /> */}
+
       <p>{question}</p>
       <div>
         {answers.map((answer) => (
@@ -40,7 +40,11 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
               disabled={userAnswer ? true : false}
               value={answer}
               // onClick={(e: MouseEvent<HTMLButtonElement, MouseEvent>) => callback(e)}>
-              onClick={(e: React.MouseEvent<HTMLButtonElement>) => callback(e)}>
+              //TODO - fix this: with MouseEven<HTMLButtonElement, MouseEvent> the onClick will complain
+              // but without it the event "e" will complain
+              onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+                callback(e)
+              }>
               <span>{answer}</span>
             </button>
           </ButtonWrapper>
