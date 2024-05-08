@@ -42,27 +42,27 @@ const GameApp: React.FC = () => {
       if (correct) setScore((prev) => prev + 1);
       // Save the answer in the array for user answers
       //NOTE - Option 1
-      const answerObject: AnswerObject = {
-        question: questions[number].question,
-        answer,
-        correct: questions[number].correctAnswer === answer,
-        correctAnswer: questions[number].correctAnswer,
-      };
-      setUserAnswers((prev) => [...prev, answerObject]);
+      //     const answerObject: AnswerObject = {
+      //       question: questions[number].question,
+      //       answer,
+      //       correct: questions[number].correctAnswer === answer,
+      //       correctAnswer: questions[number].correctAnswer,
+      //     };
+      //     setUserAnswers((prev) => [...prev, answerObject]);
+      //   }
+      // };
+      //NOTE - Option 2
+      setUserAnswers((prev) => [
+        ...prev,
+        {
+          question: questions[number].question,
+          answer,
+          correct: questions[number].correctAnswer === answer,
+          correctAnswer: questions[number].correctAnswer,
+        },
+      ]);
     }
   };
-  //NOTE - Option 2
-  //     setUserAnswers((prev) => [
-  //       ...prev,
-  //       {
-  //         question: questions[number].question,
-  //         answer,
-  //         correct: questions[number].correctAnswer === answer,
-  //         correctAnswer: questions[number].correctAnswer,
-  //       },
-  //     ]);
-  //   }
-  // };
 
   const nextQuestion = () => {
     // Move to the next question if not the last question
@@ -94,10 +94,10 @@ const GameApp: React.FC = () => {
             question={questions[number].question}
             answers={questions[number].answers}
             userAnswer={userAnswers ? userAnswers[number] : undefined}
-            // callback={checkAnswer}
-            callback={(e) =>
-              checkAnswer({ currentTarget: { value: e.target.value } })
-            }
+            callback={checkAnswer}
+            // callback={(e) =>
+            //   checkAnswer({ currentTarget: { value: e.target.value } })
+            // }
           />
         )}
         {!gameOver &&

@@ -3,6 +3,7 @@ import { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
+  deleteUser,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -20,6 +21,7 @@ interface AuthContextType {
   logout: () => void;
   signup: (email: string, password: string) => void;
   getMe: () => void;
+  deleteAUser: () => void;
   // updateProfile: (
   //   firstName: string,
   //   lastName: string,
@@ -43,6 +45,9 @@ const defaultValue: AuthContextType = {
     throw new Error("no provider");
   },
   getMe: () => {
+    throw new Error("no provider");
+  },
+  deleteAUser: () => {
     throw new Error("no provider");
   },
   // updateProfile: () => {
@@ -133,7 +138,9 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         setLoading(false);
       });
   };
-
+  // const getMe = () => {
+  //   console.log("hi there");
+  // };
   const getMe = async () => {
     try {
       const auth = getAuth();
@@ -148,12 +155,26 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
       const querySnapshot = await getDocs(q);
 
       querySnapshot.forEach((doc) => {
-        console.log("logged in user: ", doc.data());
+        // console.log("logged in user: ", doc.data());
         return doc.data();
       });
     } catch (error) {
       console.log("Error fetching user data:", error);
     }
+  };
+
+  const deleteAUser = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    deleteUser(user)
+      .then(() => {
+        // User deleted.
+        console.log("user deleted");
+      })
+      .catch((error) => {
+        // An error ocurred
+        console.log("error deleting user: ", error);
+      });
   };
 
   useEffect(() => {
@@ -189,6 +210,7 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         logout,
         signup,
         getMe,
+        deleteAUser,
         loading,
         toggleTheme,
         toggleThemeHandler: toggleThemeHandler,

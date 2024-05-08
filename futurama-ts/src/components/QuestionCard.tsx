@@ -9,7 +9,6 @@ interface QuestionCardProps {
   totalQuestions: number;
   question: string;
   answers: string[];
-
   callback: (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   userAnswer?: AnswerObject | undefined;
 }
@@ -22,7 +21,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   questionNr,
   totalQuestions,
 }) => {
-  console.log(typeof "userAnswer");
+  // console.log(typeof "userAnswer");
   return (
     <Wrapper>
       <p className="number">
@@ -42,9 +41,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
               // onClick={(e: MouseEvent<HTMLButtonElement, MouseEvent>) => callback(e)}>
               //TODO - fix this: with MouseEven<HTMLButtonElement, MouseEvent> the onClick will complain
               // but without it the event "e" will complain
-              onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-                callback(e)
-              }>
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => callback(e)}>
               <span>{answer}</span>
             </button>
           </ButtonWrapper>
@@ -55,12 +52,3 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
 };
 
 export default QuestionCard;
-
-interface QuestionCardProps {
-  questionNr: number;
-  totalQuestions: number;
-  question: string;
-  answers: string[];
-  userAnswer?: AnswerObject;
-  callback: (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-}

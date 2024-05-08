@@ -1,7 +1,8 @@
 body {
-  height: auto;
   min-height: 100vh;
-  width: 100vw;
+  /* height: auto; */
+  min-width: 100vw;
+
   background-image: radial-gradient(
       rgba(255, 255, 255, 0.9) 0%,
       rgba(255, 255, 255, 0) 40%
@@ -27,6 +28,8 @@ body {
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 /* #root {

@@ -8,8 +8,9 @@ type FooterStyle = {
   color: string | undefined;
   display: string;
   padding: string;
+  marginTop: string;
   position: "static" | "relative" | "fixed";
-  textAlign: "center";
+
   width: string;
   alignItems: string;
   justifyContent: string;
@@ -20,14 +21,13 @@ export const Footer = () => {
   const footerStyle: FooterStyle = {
     backgroundColor: "#f5f5f5",
     borderTop: "1px solid #ccc",
-
     bottom: "0",
     color: "black",
+    marginTop: "100px",
     display: "flex",
-    padding: "20px 0 20px 0 ",
-    position: "fixed",
-    width: "90%",
-    textAlign: "center",
+    padding: "10px 0 10px 0 ",
+    position: "relative",
+    width: "100vw",
     alignItems: "center",
     justifyContent: "center",
   };
@@ -36,7 +36,7 @@ export const Footer = () => {
   return (
     <footer style={footerStyle}>
       <div>
-        <h1 style={{ margin: "0" }}>hi mom, look at my awesome footer</h1>
+        <h1>hi mom, look at my awesome footer</h1>
       </div>
     </footer>
   );
