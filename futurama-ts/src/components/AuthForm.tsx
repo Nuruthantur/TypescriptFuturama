@@ -21,10 +21,12 @@ const AuthForm = ({ submitTitle, submit }: Props) => {
         submit(email, password);
       }}>
       <input
+        name="email"
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        required
       />
       <input
         type="password"

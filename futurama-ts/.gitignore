@@ -8,6 +8,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+AuthFormTest.tsx
+FormInput.tsx
+FavoritesContext.tsx
+FavoritesContext2.tsx
 
 node_modules
 dist

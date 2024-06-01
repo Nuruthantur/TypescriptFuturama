@@ -10,10 +10,16 @@ import {
   signOut,
   type User,
 } from "@firebase/auth";
-import { auth } from "../firebase";
 import Spinner from "../components/spinners/Spinner";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../firebase";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 interface AuthContextType {
   user: User | null;
@@ -109,16 +115,16 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
       });
   };
 
+  //NOTE - Option 1 for sign up
   const signup = (email: string, password: string) => {
     setLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log(user);
-        setUser(user);
-        const newItem = {
-          user: user?.uid,
+        //function returns a promise
+        console.log(userCredential.user);
+        setDoc(doc(db, "users", userCredential.user.uid), {
+          // to set a document under the "users" collection
+          //with the user's UID as the document ID.
           date: new Date(),
           displayName: "",
           email: email,
@@ -126,21 +132,48 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
           lastName: "",
           bio: "",
           location: "",
-          id: "",
-        };
-        addDoc(collection(db, "users"), newItem);
+          score: 0,
+          favorites: [], //The document contains a field named "favorites" initialized as an empty array.
+        }).catch((e) => console.log(e));
         setLoading(false);
         navigate("/", { replace: true });
       })
-      .catch((error) => {
-        const { message } = error as Error;
-        console.log(message);
-        setLoading(false);
-      });
+      .catch((e) => console.log(e));
   };
-  // const getMe = () => {
-  //   console.log("hi there");
+
+  //NOTE - Option 2 for sign up; worse
+
+  // const signup = (email: string, password: string) => {
+  //   setLoading(true);
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // Signed up
+  //       const user = userCredential.user;
+  //       console.log(user);
+  //       setUser(user);
+  //       const newItem = {
+  //         user: user?.uid,
+  //         date: new Date(),
+  //         displayName: "",
+  //         email: email,
+  //         firstName: "",
+  //         lastName: "",
+  //         bio: "",
+  //         location: "",
+  //            score: 0,
+  //         favorites: [],
+  //       };
+  //       setDoc(collection(db, "users"), newItem);
+  //       setLoading(false);
+  //       navigate("/", { replace: true });
+  //     })
+  //     .catch((error) => {
+  //       const { message } = error as Error;
+  //       console.log(message);
+  //       setLoading(false);
+  //     });
   // };
+
   const getMe = async () => {
     try {
       const auth = getAuth();
